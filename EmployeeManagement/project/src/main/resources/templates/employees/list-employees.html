@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
+	rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
+	crossorigin="anonymous">
+
+	<title>Employee Directory</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#" th:href="@{/employees/list}">Employee Management System</a>
+		
+	  
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+	  </nav>
+	  <section class="intro">
+		<div class="bg-image h-100" style="background-image: url('https://mdbootstrap.com/img/Photos/new-templates/tables/img2.jpg');">
+			
+		  <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0,0,0,.25);">
+			<div class="container">
+			  <div class="row justify-content-center">
+				<div class="col-12">
+				  <div class="card bg-dark shadow-2-strong">
+					<div class="card-body">
+					  <div class="table-responsive">
+						<a th:href="@{/employees/showformforAdd}" class="btn  btn-primary btn-sm mb-3">
+		                    ADD EMPLOYEE
+	                      </a></div>
+						<table   class="table table-dark table-borderless mb-0">
+							<thead class="table-dark">
+								<tr>
+									<th scope="col">First Name</th>
+									<th scope="col">Last Name</th>
+									<th scope="col">Email</th>
+									<th scope="col" >Action</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr th:each="tempEmployee : ${employees}">
+								
+									<td scope="row" th:text="${tempEmployee.firstName}" />	
+									<td scope="row" th:text="${tempEmployee.lastName}" />	
+									<td scope="row" th:text="${tempEmployee.email}" />	
+									<td scope="row"><a th:href="@{/employees/showformforUpdate(employeeId=${tempEmployee.id})}"
+									class="btn btn-info btn-sm">UPDATE</a>
+									<a th:href="@{/employees/delete(employeeId=${tempEmployee.id})}"
+									class="btn btn-danger btn-sm"
+									onclick="if (!(confirm('DO YOU WANT TO DELETE THIS EMPLOYEE FOR SUREE?')))">DELETE</a>
+								</td>
+								
+							</tbody>		
+						</table>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </section>
+	
+</body>
+</html>
+
+
+
